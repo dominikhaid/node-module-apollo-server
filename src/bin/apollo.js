@@ -1,12 +1,9 @@
 const {ApolloServer} = require('apollo-server-express');
 
-
 function startServer(app, serverOptions, protocol) {
-
-  const GQLRest = require('../routes/gql-user');
+  const GQLRest = require('../routers/gql-user');
   const json = require('../querys/schema');
   const jsonReslover = require('../resolver/graphql-resolver');
-
 
   let resolvers = {
     ...jsonReslover,
@@ -51,20 +48,18 @@ function startServer(app, serverOptions, protocol) {
     ],
   };
 
-
-
   const schema = new ApolloServer({
-    context: async ({req, res}) => {
-      const auth = (req.headers && req.headers.authorization) || '';
-      const email = Buffer.from(auth, 'base64').toString('ascii');
-      //if (!isEmail.validate(email))
-      // return { user: null }
-      // const users = await store.users.findOrCreate({
-      //   where: {email},
-      // });
-      // const user = (users && users[0]) || null;
-      // return {user: {...user.dataValues}};
-    },
+    // context: async ({req, res}) => {
+    //   const auth = (req.headers && req.headers.authorization) || '';
+    //   const email = Buffer.from(auth, 'base64').toString('ascii');
+    //   if (!isEmail.validate(email))
+    //   return { user: null }
+    //   const users = await store.users.findOrCreate({
+    //     where: {email},
+    //   });
+    //   const user = (users && users[0]) || null;
+    //   return {user: {...user.dataValues}};
+    // },
     typeDefs,
     resolvers,
     playground: {
@@ -82,12 +77,12 @@ function startServer(app, serverOptions, protocol) {
     }),
   });
 
-  const PORT = process.env.PORT || 3001;
   schema.applyMiddleware({app});
 
-  app.listen(PORT, () => {
-    console.log('Apollo Server is running at ', PORT);
-  });
+  port = process.env.PORT || 5000;
+  if (protocol.httpServer) protocol.httpServer.listen(port);
+  if (protocol.httpsServer) protocol.httpsServer.listen(port);
+  if (!protocol.httpServer && !protocol.httpsServer) app.listen(port);
 }
 
 module.exports.startServer = startServer;

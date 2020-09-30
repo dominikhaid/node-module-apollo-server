@@ -1,6 +1,5 @@
-
 if (serverOptions.server === 'apollo') {
-  const startApollo = require('./bin/apollo').startServer;
+  const startApollo = require('./src/bin/apollo').startServer;
   startApollo(app, serverOptions, {
     http: http,
     httpServer: httpServer,

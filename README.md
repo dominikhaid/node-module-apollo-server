@@ -1,24 +1,27 @@
-<br/>
-<br/>
 
 # Apollo-Server
 
----
-
-```
-GraphQL server build with node.js and apollo-server.
-Merging endpoints from https://jsonplaceholder.typicode.com/users
-and https://api.spacexdata.com/v2/
-```
+## Discription
 
 ---
 
-<br/>
-<br/>
+This module is developed to extend our base server. It can be easily installed with the Plugin script from the base module. For detailed Information please see [@base-server](https://github.com/dominikhaid/node-base-server.git)
 
-## INSTALL
+### Module Features
 
-1. npm install
-2. edit .env files
-3. npm run dev
-4. visit http://localhost/graphql -> graphql playground
+- Apollo Server hosting GraphQl API´s
+- GraphQl playground
+- Sample data, functions and querys
+
+### Setup
+
+---
+
+> git clone https://github.com/dominikhaid/node-base-server.git my-app
+> 
+> cd my-app
+> 
+> npm run plguin p=https://github.com/dominikhaid/node-module-apollo-server.git
+> 
+> npm run dev
+> visit http:/localhost/graphql
