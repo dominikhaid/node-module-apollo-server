@@ -1,3 +1,3 @@
 module.exports = {
-  "server": "apollo"
+  server: 'apollo',
 };
